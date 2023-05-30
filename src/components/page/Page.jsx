@@ -84,19 +84,25 @@ const Page = ({ data }) => {
         </ContainerGradient>
       </Container>
       <MovieContainer>
-        {isSearching}
-        {searchResults.length === 0 && searchTerm.length > 0 ? (
-          <p>Movie not found</p>
-        ) : (
-          CardData.map((data) => (
-            <Card
-              key={data.id}
-              image={data.image}
-              title={data.title}
-              date={data.date}
-            />
-          ))
-        )}
+        {searchTerm.length === 0
+          ? // Render the initial movie cards if the search term is empty
+            CardData.map((data) => (
+              <Card
+                key={data.id}
+                image={data.image}
+                title={data.title}
+                date={data.date}
+              />
+            ))
+          : // Render the search results if the search term is not empty
+            searchResults.map((data) => (
+              <Card
+                key={data.id}
+                image={data.image}
+                title={data.title}
+                date={data.date}
+              />
+            ))}
       </MovieContainer>
 
       <Modal
