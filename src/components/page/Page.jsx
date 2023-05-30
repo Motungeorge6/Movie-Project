@@ -84,6 +84,7 @@ const Page = ({ data }) => {
         </ContainerGradient>
       </Container>
       <MovieContainer>
+        {isSearching}
         {searchResults.length === 0 && searchTerm.length > 0 ? (
           <p>Movie not found</p>
         ) : (
