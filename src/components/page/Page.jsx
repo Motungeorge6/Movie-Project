@@ -17,7 +17,7 @@ import Card from "../card/Card";
 import CardData from "../card/CardData";
 import { Modal, Typography, Box } from "@mui/material";
 
-const Page = () => {
+const Page = ({ data }) => {
   //   const randomData = CardData[randomIndex];
 
   const [randomData, setRandomData] = useState(null);
@@ -36,6 +36,18 @@ const Page = () => {
     setOpen(!open);
   };
 
+  //   const [searchTerm, setSearchTerm] = useState("");
+  //   const [searchResults, setSearchResults] = useState([]);
+
+  //   const handleSearchChange = (event) => {
+  //     setSearchTerm(event.target.value);
+  //     const filteredMovies = data.filter((data) =>
+  //       data.title.toLowerCase().includes(event.target.value.toLowerCase())
+  //     );
+
+  //     setSearchResults(filteredMovies);
+  //   };
+
   return (
     <>
       <Container>
@@ -51,7 +63,23 @@ const Page = () => {
           </LogoHolder>
 
           <SearchContainer>
-            <SearchInput type="text" placeholder="Search For Your Favorite" />
+            <SearchInput
+              type="text"
+              placeholder="Search For Your Favorite"
+              //   value={searchTerm}
+              //   onChange={handleSearchChange}
+            />
+
+            {/* <MovieContainer>
+              {searchResults.map((data) => (
+                <Card
+                  key={data.id}
+                  image={data.image}
+                  title={data.title}
+                  date={data.date}
+                />
+              ))}
+            </MovieContainer> */}
 
             {randomData && (
               <MovieTitleHolder>

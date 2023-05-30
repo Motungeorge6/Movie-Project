@@ -23,6 +23,12 @@ export const SearchContainer = styled.div`
   }
 `;
 
+export const ResultsContainer = styled.div`
+display :grid;
+grid-template-column:repeat(auto-fill, minmax(200px, 1fr))
+grid-gap:20px;
+`;
+
 export const SearchInput = styled.input`
   padding: 20px;
   border: 1px solid grey;
@@ -70,7 +76,6 @@ export const MovieTitleHolder = styled.div`
   p {
     font-size: 24px;
     font-weight: 600;
-    // width: 30%;
   }
 
   @media screen and (max-width: 480px) {
@@ -97,11 +102,11 @@ export const MovieTitleHolder = styled.div`
     font-size: 30px;
   }
 
-  p {
-    font-size: 20px;
-    font-weight: 700;
-    width: 100%;
-  }
+  // p {
+  //   font-size: 15px;
+  //   font-weight: 700;
+  //   width: 100%;
+  // }
 `;
 
 export const MovieContainer = styled.div`
