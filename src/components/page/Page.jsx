@@ -36,17 +36,21 @@ const Page = ({ data }) => {
     setOpen(!open);
   };
 
-  //   const [searchTerm, setSearchTerm] = useState("");
-  //   const [searchResults, setSearchResults] = useState([]);
+  //Search Function
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  //   const handleSearchChange = (event) => {
-  //     setSearchTerm(event.target.value);
-  //     const filteredMovies = data.filter((data) =>
-  //       data.title.toLowerCase().includes(event.target.value.toLowerCase())
-  //     );
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredMovies = data.filter((movie) =>
+      movie.title.toLowerCase().includes(searchTerm)
+    );
 
-  //     setSearchResults(filteredMovies);
-  //   };
+    setSearchResults(filteredMovies);
+    setIsSearching(searchTerm !== "");
+  };
 
   return (
     <>
@@ -66,20 +70,9 @@ const Page = ({ data }) => {
             <SearchInput
               type="text"
               placeholder="Search For Your Favorite"
-              //   value={searchTerm}
-              //   onChange={handleSearchChange}
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
-
-            {/* <MovieContainer>
-              {searchResults.map((data) => (
-                <Card
-                  key={data.id}
-                  image={data.image}
-                  title={data.title}
-                  date={data.date}
-                />
-              ))}
-            </MovieContainer> */}
 
             {randomData && (
               <MovieTitleHolder>
@@ -91,14 +84,18 @@ const Page = ({ data }) => {
         </ContainerGradient>
       </Container>
       <MovieContainer>
-        {CardData.map((data) => (
-          <Card
-            key={data.id}
-            image={data.image}
-            title={data.title}
-            date={data.date}
-          />
-        ))}
+        {searchResults.length === 0 && searchTerm.length > 0 ? (
+          <p>Movie not found</p>
+        ) : (
+          CardData.map((data) => (
+            <Card
+              key={data.id}
+              image={data.image}
+              title={data.title}
+              date={data.date}
+            />
+          ))
+        )}
       </MovieContainer>
 
       <Modal
