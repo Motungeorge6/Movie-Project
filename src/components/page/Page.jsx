@@ -39,7 +39,7 @@ const Page = ({ data }) => {
   //Search Function
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+  //   const [isSearching, setIsSearching] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -49,7 +49,6 @@ const Page = ({ data }) => {
     );
 
     setSearchResults(filteredMovies);
-    setIsSearching(searchTerm !== "");
   };
 
   return (
@@ -84,25 +83,30 @@ const Page = ({ data }) => {
         </ContainerGradient>
       </Container>
       <MovieContainer>
-        {searchTerm.length === 0
-          ? // Render the initial movie cards if the search term is empty
-            CardData.map((data) => (
-              <Card
-                key={data.id}
-                image={data.image}
-                title={data.title}
-                date={data.date}
-              />
-            ))
-          : // Render the search results if the search term is not empty
-            searchResults.map((data) => (
-              <Card
-                key={data.id}
-                image={data.image}
-                title={data.title}
-                date={data.date}
-              />
-            ))}
+        {searchTerm.length === 0 ? (
+          // Render the initial movie cards if the search term is empty
+          CardData.map((data) => (
+            <Card
+              key={data.id}
+              image={data.image}
+              title={data.title}
+              date={data.date}
+            />
+          ))
+        ) : searchResults.length === 0 ? (
+          // Render an error message if there are no search results
+          <p>Movie not found.</p>
+        ) : (
+          // Render the search results if there are any
+          searchResults.map((data) => (
+            <Card
+              key={data.id}
+              image={data.image}
+              title={data.title}
+              date={data.date}
+            />
+          ))
+        )}
       </MovieContainer>
 
       <Modal
