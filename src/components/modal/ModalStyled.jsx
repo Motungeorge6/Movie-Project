@@ -19,5 +19,5 @@ export const FavoritesModal = styled.div`
   padding: 20px;
 `;
 export const FavoriteMovie = styled.div`
-  /* Add styles for individual movie items */
+  /*  styles for individual movie items */
 `;
